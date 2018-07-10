@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log(userMovie)
             console.log("works")
             // assign a queryUrl var to store concatinated url
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
             console.log(queryURL)
 
             // AJAX Call
@@ -79,9 +79,22 @@ $(document).ready(function() {
                 // loop through results
                 for (var i = 0; i < results.length; i++) {
 
+                    var stillUrl = results[i].images.fixed_height_still.url
                     // image tag for gifs
-                    var gifImage = $("<img>");
-                    gifImage.attr("src", results[i].images.fixed_height.url)
+                    var gifImage = $("<img class='gifResults'>");
+                    gifImage.attr("src", stillUrl)
+                    gifImage.attr("data-state", "still")
+                    gifImage.attr("data-still", stillUrl)
+                    id = "gif" + i
+                    // apply unique IDs
+                    gifImage.attr("id", id)
+                    var deleteUrl = stillUrl.slice(0, -6)
+
+                    console.log(deleteUrl)
+                    var animateUrl = (deleteUrl + ".gif")
+                    gifImage.attr("data-animate", animateUrl)
+                    console.log(animateUrl)
+
 
                     // paragraph to push under gif
                     var p = $("<p>").text("Rating: " + results[i].rating)
@@ -89,6 +102,23 @@ $(document).ready(function() {
                     // append html div
                     $("#gifCol").append(gifImage)
                     $("#gifCol").append(p)
+
+                    // onclick to pause and start
+                    $("#" + id).on("click", function() {
+                        console.log("works")
+
+                        // check and store state
+                        var state = $(this).attr("data-state");
+                        // Alternate states
+                        if (state == "still") {
+                          $(this).attr("src", $(this).attr("data-animate"));
+                          $(this).attr("data-state", "animate");
+                        } 
+                        else {
+                          $(this).attr("src", $(this).attr("data-still"));
+                          $(this).attr("data-state", "still");
+                        }
+                      });
                 }
 
             })
