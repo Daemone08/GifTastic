@@ -16,15 +16,31 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
+            <!-- make a col for the buttons to push to -->
+            <div class="col-9" id="buttonsCol">
 
-    <!-- make a div for the buttons to push to -->
-    <div id="buttons">
+            </div>
+            <!-- make a col for user form -->
+            <div class="col-3" id="formCol">
+                <!-- create a form to accept user input -->
+                <form class="m-2">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Movie</label>
+                        <input class="form-control" id="movieForm" placeholder="Pick a movie">
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="submitButton">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <!-- gifs go here -->
+            <div class ="col-12" id = "gifCol">
 
+            </div>
+        </div>
     </div>
-
-
-
-
 </body>
 
 </html>
