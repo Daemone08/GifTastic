@@ -4,7 +4,7 @@
 
 var topics = ["Star Wars", "Shawshank Redemption", "Frozen", "Gladiator", "Emperors New Groove", "Mean Girls", "Layer Cake", "Children of Men", "Toy Story", "Inception"]
 
-// functions
+// functions -------------------
 
 // function to display buttons
 function displayButtons() {
@@ -15,7 +15,10 @@ function displayButtons() {
         // assign button markup
         var button = $("<button>")
         // add button bootstrap
-        button.addClass("btn btn-primary m-2")
+        button.addClass("btn btn-primary m-2 movieButton")
+        // add attribute to identify each button
+        button.attr("data-moviename", movie);
+        button.attr("id", movie);
         // add text to button
         button.text(movie)
         // append button to #buttons
@@ -30,7 +33,8 @@ function displayNewButtons() {
 
     // create new button
     var button = $("<button>")
-    button.addClass("btn btn-primary m-2")
+    button.addClass("btn btn-primary m-2 movieButton")
+    button.attr("data-moviename", newMovie)
     button.text(newMovie)
 
     // append buttonsCol
@@ -38,7 +42,17 @@ function displayNewButtons() {
 
 }
 
-// on document ready push topics to buttons
+// function for AJAX call
+function ajaxCall() {
+    // store pick moviename value
+    var userMovie = $(this).data("moviename")
+    console.log(userMovie)
+
+}
+
+// listeners -------------------
+
+// on document ready push topics to buttons and listen for clicks
 $(document).ready(function() {
 
     displayButtons()
@@ -48,4 +62,8 @@ $(document).ready(function() {
         displayNewButtons()
     })
 
+    // button on click AJAX call
+    $(".movieButton").on("click", function() {
+        ajaxCall()
+    })
 })
