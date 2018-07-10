@@ -1,6 +1,6 @@
 // define global variables
 
-// create an array of topics
+// create an array of topics 
 
 var topics = ["Star Wars", "Shawshank Redemption", "Frozen", "Gladiator", "Emperors New Groove", "Mean Girls", "Layer Cake", "Children of Men", "Toy Story", "Inception"]
 
@@ -55,6 +55,8 @@ $(document).ready(function() {
 
     // button on click AJAX call
     $(document).on("click", ".movieButton", function() {
+            // clear div
+            $("#gifCol").empty()
             // store pick moviename value
             var userMovie = $(this).attr("data-moviename")
             console.log(userMovie)
@@ -70,6 +72,24 @@ $(document).ready(function() {
             }).then(function(response) {
 
                 console.log(response)
+
+                // store data
+                var results = response.data
+
+                // loop through results
+                for (var i = 0; i < results.length; i++) {
+
+                    // image tag for gifs
+                    var gifImage = $("<img>");
+                    gifImage.attr("src", results[i].images.fixed_height.url)
+
+                    // paragraph to push under gif
+                    var p = $("<p>").text("Rating: " + results[i].rating)
+
+                    // append html div
+                    $("#gifCol").append(gifImage)
+                    $("#gifCol").append(p)
+                }
 
             })
     })
