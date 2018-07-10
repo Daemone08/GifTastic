@@ -18,7 +18,6 @@ function displayButtons() {
         button.addClass("btn btn-primary m-2 movieButton")
         // add attribute to identify each button
         button.attr("data-moviename", movie);
-        button.attr("id", movie);
         // add text to button
         button.text(movie)
         // append button to #buttons
@@ -42,14 +41,6 @@ function displayNewButtons() {
 
 }
 
-// function for AJAX call
-function ajaxCall() {
-    // store pick moviename value
-    var userMovie = $(this).data("moviename")
-    console.log(userMovie)
-
-}
-
 // listeners -------------------
 
 // on document ready push topics to buttons and listen for clicks
@@ -63,7 +54,13 @@ $(document).ready(function() {
     })
 
     // button on click AJAX call
-    $(".movieButton").on("click", function() {
-        ajaxCall()
+    $(document).on("click", ".movieButton", function() {
+            // store pick moviename value
+            var userMovie = $(this).attr("data-moviename")
+            console.log(userMovie)
+            console.log("works")
+            // assign a queryUrl var to store concatinated url
+            queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
+            console.log(queryUrl)
     })
 })
