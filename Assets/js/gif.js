@@ -60,7 +60,17 @@ $(document).ready(function() {
             console.log(userMovie)
             console.log("works")
             // assign a queryUrl var to store concatinated url
-            queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
-            console.log(queryUrl)
+            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
+            console.log(queryURL)
+
+            // AJAX Call
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function(response) {
+
+                console.log(response)
+
+            })
     })
 })
