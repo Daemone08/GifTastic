@@ -7,7 +7,7 @@ var topics = ["Star Wars", "Shawshank Redemption", "Frozen", "Gladiator", "Emper
 // functions -------------------
 
 // function to display buttons
-function displayButtons() {
+function displayButtons() { 
 
     // loop through topics
     topics.forEach(function(movie) {
