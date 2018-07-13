@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log(userMovie)
             console.log("works")
             // assign a queryUrl var to store concatinated url
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
+            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + userMovie + "&api_key=tszRTJReTLMA8ZDEga5LbwuYn7rI6lmh&limit=10"
             console.log(queryURL)
 
             // AJAX Call
